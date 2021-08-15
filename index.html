@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <title>Calculo IMC</title>
+</head>
+<body>
+    <header class="cabecalho">
+        <h2>
+            Calculo IMC
+        </h2>
+    </header>
+
+    <main class="principal">
+        <section class="titulo">
+            <h1 class="titulo__texto">
+                Meus pacientes
+            </h1>
+            <hr>
+        </section>
+
+        <section class="pacientes__busca">
+            
+            <form class="pacientes__formBusca">
+                <label for="pacientes__busca-formulario">Busca: </label><br>
+                <input type="text" name="pacientes__busca-nome" id="pacientes__busca-formulario"  placeholder="Buscar um Paciente">
+            </form>
+
+            <table class="pacientes__exibir mt-3">
+                <thead>
+                    <tr class="pacientes__exibir-cabecalho text-center"> 
+                        <td class="pacientes__exibir-cabecalho--item border">Nome</td>
+                        <td class="pacientes__exibir-cabecalho--item border">Peso(kg)</td>
+                        <td class="pacientes__exibir-cabecalho--item border">Altura(m)</td>
+                        <td class="pacientes__exibir-cabecalho--item border">Gordura Corporal(%)</td>
+                        <td class="pacientes__exibir-cabecalho--item border">IMC</td>
+                        <td class="pacientes__exibir-cabecalho--item--operacoes border me-3">Operações</td>
+                    </tr>
+                </thead>
+                <tbody class="pacientes__tbody">
+                    <tr class="pacientes__exibir-corpo text-center" id="paciente__1">
+                        <td class="pacientes__exibir-item--nome border">Rodrigo</td>
+                        <td class="pacientes__exibir-item--peso border">100</td>
+                        <td class="pacientes__exibir-item--altura border">1.80</td>
+                        <td class="pacientes__exibir-item--gordura border">25%</td>
+                        <td class="pacientes__exibir-item--imc border">0</td>
+                        <td class="pacientes__exibir-item--operacoes border pe-2 justify-content-around">
+                            <a href="#" class="btn btn-warning ms-2" id="btnUpdate" data-bs-toggle="modal" data-bs-target="#pacientes__update" >Alterar</a>
+
+                            <a href="#" class="btn btn-danger" id="btnDelete" data-bs-toggle="modal" data-bs-target="#pacientes__delete">Deletar</a>
+                        </td>
+                    </tr>
+
+                    <tr class="pacientes__exibir-corpo text-center" id="paciente__2">
+                        <td class="pacientes__exibir-item--nome border text-center">Priscila</td>
+                        <td class="pacientes__exibir-item--peso border">85</td>
+                        <td class="pacientes__exibir-item--altura border">1.65</td>
+                        <td class="pacientes__exibir-item--gordura border">15%</td>
+                        <td class="pacientes__exibir-item--imc border">0</td>
+                        <td class="pacientes__exibir-item--operacoes border pe-2 justify-content-around">
+                            <a href="#" class="btn btn-warning ms-2" id="btnUpdate" data-bs-toggle="modal" data-bs-target="#pacientes__update">Alterar</a>
+                            <a href="#" class="btn btn-danger" id="btnDelete" data-bs-toggle="modal" data-bs-target="#pacientes__delete">Deletar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+             
+            <div class="erro__import paciente__import-erro">
+                <p>
+                    Erro ao importar
+                </p>
+            </div>
+
+            <button type="submit" id="importaPaciente" class="btn  btn-primary my-3">Importar</button>
+            
+
+            
+                        <!-- Modal Delete -->
+
+            
+            <div class="modal fade" id="pacientes__delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">REMOVER PACIENTE</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <p class="text-center">
+                            Tem certeza que deseja deletar?
+                        </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger" id="pacientes__delete-confirm">Confirmar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                     
+
+                        <!--Modal Update-->
+            <div class="modal fade" id="pacientes__update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">ALTERAR DADOS DO PACIENTE</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text modal__update" id="inputGroup-sizing-default">Nome</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text modal__update" id="inputGroup-sizing-default">Peso(kg)</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text modal__update" id="inputGroup-sizing-default">Altura(m)</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text modal__update" id="inputGroup-sizing-default">Gordura Corporal(%)</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger" id="pacientes__delete-confirm">Confirmar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+        </section>
+
+        <section class="pacientes__adicionar">
+            <h2 class="pacientes__adicionar-titulo fs-1">
+                Adicionar novo paciente
+            </h2>
+            <hr>
+
+            <form class="pacientes__adicionar-form d-flex justify-content-between flex-wrap">
+                
+                <div class="pacientes__adicionar-form--nome d-flex flex-column">
+                    <label for="pacientes__adicionar-form--nome">Nome: </label>
+                    <input type="text" name="inputNome" id="pacientes__adicionar-form--nome" placeholder="digite o nome do seu paciente">
+                </div>
+                
+                <div class="pacientes__adicionar-form--peso d-flex flex-column">
+                    <label for="pacientes__adicionar-form--peso">Peso: </label>
+                    <input type="text" name="inputPeso" id="pacientes__adicionar-form--peso" placeholder="digite o peso do seu paciente">
+                </div>
+
+                <div class="pacientes__adicionar-form--altura d-flex flex-column">
+                    <label for="pacientes__adicionar-form--altura">Altura: </label>
+                    <input type="text" name="inputAltura" id="pacientes__adicionar-form--altura" placeholder="digite a altura do seu paciente">
+                </div>
+
+                <div class="pacientes__adicionar-form--gordura d-flex flex-column">
+                    <label for="pacientes__adicionar-form--gordura">% de Gordura: </label>
+                    <input type="text" name="inputGordura" id="pacientes__adicionar-form--gordura" placeholder="digite a % de gordura">
+                </div>
+            </form>
+            <div class="pacientes__adicionar-erro">
+                <p class="pacientes__adicionar-erro--mensagem" id="pacientes__adicionar-erro--peso">
+                    Peso inválido
+               </p>
+               
+                <p class="pacientes__adicionar-erro--mensagem" id="pacientes__adicionar-erro--altura">
+                    Altura inválida
+               </p>
+            </div>
+            <div class="d-flex justify-content-start">
+                <button type="submit" id="adicionaPaciente" class="btn btn-primary">Adicionar</button>
+            </div>
+        </section>
+
+  
+ 
+    </main>
+</body>
+<footer>
+    <script src="js/calcula-imc.js"></script>
+    <script src="js/adiciona-paciente.js"></script>
+    <script src="js/busca-paciente.js"></script>
+    <script src="js/importa-paciente.js"></script>
+    <script src="js/deleta-paciente.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</footer>
+</html>

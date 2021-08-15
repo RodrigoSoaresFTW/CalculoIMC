@@ -1,0 +1,62 @@
+.cabecalho{
+    background-color: rgba(22, 19, 19, 0.877);
+    color: white;
+    padding: 0.5rem 15% 0.5rem 15%;
+}
+
+.principal{
+    padding: 0.5rem 15% 0.5rem 15%;
+}
+
+.titulo__texto{
+    font-size: 3rem;
+}
+#pacientes__busca-formulario{
+    width: 300px;
+}
+
+.pacientes__exibir{
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border-spacing: 0;
+}
+
+.pacientes__exibir-cabecalho{
+    background-color: rgba(0, 0, 0, 0.171);
+}
+
+.pacientes__exibir-cabecalho--item{
+    font-weight: bold;
+}
+
+.pacientes__exibir-cabecalho--item--operacoes{
+    width: 200px;
+    font-weight: bold;
+}
+
+.pacientes__exibir-item--operacoes{
+    display: flex;
+}
+
+#pacientes__adicionar-form--peso, #pacientes__adicionar-form--nome, #pacientes__adicionar-form--altura, #pacientes__adicionar-form--gordura{
+    width: 300px;
+}
+
+.pacientes__adicionar-form{
+    height: 150px;
+}
+
+.modal__update{
+    width: 170px;
+}
+
+.pacientes__adicionar-erro--mensagem, .paciente__import-erro{
+    color: red;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.pacientes__adicionar-erro--altura, .pacientes__adicionar-erro--peso, .paciente__exibir-filtro, .erro__import{
+    display: none;
+}
